@@ -62,9 +62,10 @@ nav {
   font-weight: 900;
   letter-spacing: -0.02em;
   color: var(--white);
+  text-decoration: none;
 }
 .logo span { color: var(--cyan); }
-nav ul { list-style: none; display: flex; gap: 2.5rem; }
+nav ul { list-style: none; display: flex; gap: 2.5rem; margin-left: auto; }
 nav ul li a {
   color: var(--muted);
   text-decoration: none;
@@ -268,12 +269,21 @@ section { padding: 8rem 4rem; }
 
 /* HOW */
 .how-section { background: linear-gradient(180deg, transparent, rgba(13,36,68,0.2) 50%, transparent); }
-.steps-wrap { max-width: 1100px; margin: 4rem auto 0; }
+.steps-wrap { max-width: 900px; margin: 4rem auto 0; }
 .steps-header { text-align: center; margin-bottom: 5rem; }
-.steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; position: relative; }
+
+/* 3 étapes — grille 3 colonnes */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+}
 .steps-grid::before {
-  content: ''; position: absolute; top: 40px; left: 12.5%; right: 12.5%;
-  height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), var(--accent), var(--cyan), transparent); opacity: 0.3;
+  content: ''; position: absolute; top: 40px; left: 16%; right: 16%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--accent), var(--cyan), transparent);
+  opacity: 0.3;
 }
 .step { text-align: center; padding: 0 1rem; }
 .step-num {
@@ -339,6 +349,15 @@ section { padding: 8rem 4rem; }
 .formats-inner { max-width: 900px; margin: 0 auto; text-align: center; }
 .formats-inner p { color: var(--muted); line-height: 1.7; max-width: 500px; margin: 0 auto; }
 .formats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+
+/* 5 éléments — dernier centré */
+.formats-grid .format-item:last-child:nth-child(3n - 1) {
+  grid-column: 2;
+}
+.formats-grid .format-item:nth-last-child(2):nth-child(3n + 1) {
+  grid-column: 1;
+}
+
 .format-item {
   padding: 2rem 1.5rem;
   border: 1px solid rgba(255,255,255,0.07);
@@ -387,9 +406,10 @@ footer nav ul li a:hover { color: var(--cyan); }
   section, .locations-section, .formats-section, .cta-section { padding: 5rem 1.5rem; }
   .hero { padding: 0 1.5rem; }
   .concept-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
   .steps-grid::before { display: none; }
   .benefits-grid, .formats-grid { grid-template-columns: 1fr; }
+  .formats-grid .format-item:last-child:nth-child(3n - 1) { grid-column: 1; }
   .stats-strip { padding: 2rem 1.5rem; flex-wrap: wrap; }
   .stat-item { padding: 1rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); width: 50%; }
   footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
@@ -404,12 +424,13 @@ footer nav ul li a:hover { color: var(--cyan); }
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Bluu<span>Sip</span></div>
+  <a href="#hero" class="logo">Bluu<span>Sip</span></a>
   <ul>
     <li><a href="#concept">Concept</a></li>
     <li><a href="#comment">Processus</a></li>
     <li><a href="#lieux">Lieux</a></li>
-    <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
+    <li><a href="#annonceurs">Annonceurs</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
 
@@ -422,7 +443,7 @@ footer nav ul li a:hover { color: var(--cyan); }
   <canvas id="ripple-canvas"></canvas>
   <div class="hero-content">
     <div class="hero-eyebrow">La régie publicitaire terrain</div>
-    <h1 class="hero-title">La publicité qui<br><em>s'hydrate</em></h1>
+    <h1 class="hero-title">La publicité qui<br><em>hydrate</em></h1>
     <p class="hero-sub">Nous transformons la bouteille d'eau en média à part entière, distribuée gratuitement, portée par des milliers de mains, visible partout.</p>
     <div class="hero-actions">
       <a href="#annonceurs" class="btn-primary">Devenir annonceur</a>
@@ -516,13 +537,11 @@ footer nav ul li a:hover { color: var(--cyan); }
     </div>
     <div class="steps-grid">
       <div class="step reveal">
-      </div>
-      <div class="step reveal" style="transition-delay:0.1s">
         <div class="step-num">1</div>
         <h3>Vous customisez<br>votre bouteille</h3>
         <p>Votre marque, votre message, votre visuel sur une surface à 360° impossible à ignorer.</p>
       </div>
-      <div class="step reveal" style="transition-delay:0.2s">
+      <div class="step reveal" style="transition-delay:0.15s">
         <div class="step-num">2</div>
         <h3>Nous distribuons<br>sur le terrain</h3>
         <p>Nos équipes distribuent gratuitement les bouteilles à l'audience présente.</p>
@@ -611,7 +630,7 @@ footer nav ul li a:hover { color: var(--cyan); }
       <h4>QR Code interactif</h4>
       <p>Intégrez un QR code sur votre étiquette pour rediriger vers une page de destination ou un jeu concours.</p>
     </div>
-    <div class="format-item reveal" style="transition-delay:0.3s">
+    <div class="format-item reveal" style="transition-delay:0.2s">
       <h4>Sur mesure</h4>
       <p>Votre brief, notre créativité. Nous construisons ensemble un dispositif adapté à vos ambitions.</p>
     </div>
@@ -633,14 +652,6 @@ footer nav ul li a:hover { color: var(--cyan); }
 <footer>
   <div class="footer-logo">Bluu<span>Sip</span></div>
   <p>© 2026 BluuSip. Tous droits réservés.</p>
-  <nav>
-    <ul>
-      <li><a href="#concept">Concept</a></li>
-      <li><a href="#lieux">Lieux</a></li>
-      <li><a href="#annonceurs">Annonceurs</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 </footer>
 
 <script>
